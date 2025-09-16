@@ -95,45 +95,55 @@
   </worldbody>
 
   <actuator>
+    <motor class="rotate" name="FL_motor" joint="FL_Z_joint" />
+    <motor class="rotate" name="FR_motor" joint="FR_Z_joint" />
+    <motor class="rotate" name="RL_motor" joint="RL_Z_joint" />
+    <motor class="rotate" name="RR_motor" joint="RR_Z_joint" />
 
-      <jointpos name="FL_Z_pos" joint="FL_Z_joint" />
-      <jointpos name="FR_Z_pos" joint="FR_Z_joint" />
-      <jointpos name="RL_Z_pos" joint="RL_Z_joint" />
-      <jointpos name="RR_Z_pos" joint="RR_Z_joint" />
+    <motor ctrlrange="-15 15" name="FL_wheel" joint="FLY_joint" />
+    <motor ctrlrange="-15 15" name="FR_wheel" joint="FR_Y_joint" />
+    <motor ctrlrange="-15 15" name="RL_wheel" joint="RL_Y_joint" />
+    <motor ctrlrange="-15 15" name="RR_wheel" joint="RR_Y_joint" />
+  </actuator>
 
-      <jointpos name="FLY_pos" joint="FLY_joint" />
-      <jointpos name="FR_Y_pos" joint="FR_Y_joint" />
-      <jointpos name="RL_Y_pos" joint="RL_Y_joint" />
-      <jointpos name="RR_Y_pos" joint="RR_Y_joint" />
+  <sensor>
+    <jointpos name="FL_Z_pos" joint="FL_Z_joint" />
+    <jointpos name="FR_Z_pos" joint="FR_Z_joint" />
+    <jointpos name="RL_Z_pos" joint="RL_Z_joint" />
+    <jointpos name="RR_Z_pos" joint="RR_Z_joint" />
 
-      <jointvel name="FL_Z_vel" joint="FL_Z_joint" />
-      <jointvel name="FR_Z_vel" joint="FR_Z_joint" />
-      <jointvel name="RL_Z_vel" joint="RL_Z_joint" />
-      <jointvel name="RR_Z_vel" joint="RR_Z_joint" />
+    <jointpos name="FLY_pos" joint="FLY_joint" />
+    <jointpos name="FR_Y_pos" joint="FR_Y_joint" />
+    <jointpos name="RL_Y_pos" joint="RL_Y_joint" />
+    <jointpos name="RR_Y_pos" joint="RR_Y_joint" />
 
-      <jointvel name="FLY_vel" joint="FLY_joint" />
-      <jointvel name="FR_Y_vel" joint="FR_Y_joint" />
-      <jointvel name="RL_Y_vel" joint="RL_Y_joint" />
-      <jointvel name="RR_Y_vel" joint="RR_Y_joint" />
+    <jointvel name="FL_Z_vel" joint="FL_Z_joint" />
+    <jointvel name="FR_Z_vel" joint="FR_Z_joint" />
+    <jointvel name="RL_Z_vel" joint="RL_Z_joint" />
+    <jointvel name="RR_Z_vel" joint="RR_Z_joint" />
 
+    <jointvel name="FLY_vel" joint="FLY_joint" />
+    <jointvel name="FR_Y_vel" joint="FR_Y_joint" />
+    <jointvel name="RL_Y_vel" joint="RL_Y_joint" />
+    <jointvel name="RR_Y_vel" joint="RR_Y_joint" />
 
-      <jointactuatorfrc name="FL_Z_torque" joint="FL_Z_joint" />
-      <jointactuatorfrc name="FR_Z_torque" joint="FR_Z_joint" />
-      <jointactuatorfrc name="RL_Z_torque" joint="RL_Z_joint" />
-      <jointactuatorfrc name="RR_Z_torque" joint="RR_Z_joint" />
+    <jointactuatorfrc name="FL_Z_torque" joint="FL_Z_joint" />
+    <jointactuatorfrc name="FR_Z_torque" joint="FR_Z_joint" />
+    <jointactuatorfrc name="RL_Z_torque" joint="RL_Z_joint" />
+    <jointactuatorfrc name="RR_Z_torque" joint="RR_Z_joint" />
 
-      <jointactuatorfrc name="FLY_torque" joint="FLY_joint" noise="0.01"/>
-      <jointactuatorfrc name="FR_Y_torque" joint="FR_Y_joint" noise="0.01"/>
-      <jointactuatorfrc name="RL_Y_torque" joint="RL_Y_joint" noise="0.01"/>
-      <jointactuatorfrc name="RR_Y_torque" joint="RR_Y_joint" noise="0.01"/>
+    <jointactuatorfrc name="FLY_torque" joint="FLY_joint" noise="0.01"/>
+    <jointactuatorfrc name="FR_Y_torque" joint="FR_Y_joint" noise="0.01"/>
+    <jointactuatorfrc name="RL_Y_torque" joint="RL_Y_joint" noise="0.01"/>
+    <jointactuatorfrc name="RR_Y_torque" joint="RR_Y_joint" noise="0.01"/>
 
-      <framequat name="imu_quat" objtype="site" objname="imu" noise="0.0"/>
-      <gyro name="imu_gyro" site="imu" noise="0.0"/>
-      <accelerometer name="imu_acc" site="imu" />
+    <framequat name="imu_quat" objtype="site" objname="imu" noise="0.0"/>
+    <gyro name="imu_gyro" site="imu" noise="0.0"/>
+    <accelerometer name="imu_acc" site="imu" />
 
-      <framepos name="frame_pos" objtype="site" objname="imu" />
-      <framelinvel name="frame_lin_vel" objtype="site" objname="imu" />
-      <frameangvel name="frame_ang_vel" objtype="site" objname="imu" />
+    <framepos name="frame_pos" objtype="site" objname="imu" />
+    <framelinvel name="frame_lin_vel" objtype="site" objname="imu" />
+    <frameangvel name="frame_ang_vel" objtype="site" objname="imu" />
   </sensor>
 
 </mujoco>
