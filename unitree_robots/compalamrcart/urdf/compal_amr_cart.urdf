@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="compal_amr_cart">
+  <mujoco>
+  <compiler
+    meshdir="../meshes"
+    balanceinertia="true"
+    discardvisual="false" />
+  </mujoco>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00551370 0.00325048 0.00318185"
+        rpy="0 0 0" />
+      <mass
+        value="100.00000000" />
+      <inertia
+        ixx="1.60320066"
+        ixy="0.00179151"
+        ixz="0.10770881"
+        iyy="2.46078975"
+        iyz="0.02951005"
+        izz="3.12176719" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/base_link_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="FL">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.00164392 -0.05638397"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00741798"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00841608"
+        iyz="0.00021903"
+        izz="0.00257866" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/FL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="FL_joint"
+    type="continuous">
+    <origin
+      xyz="0.215 0.13 -0.0422268546742116"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="FL" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="FLW">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.01916676 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00389570"
+        ixy="0.0000001"
+        ixz="0.0000001"
+        iyy="0.00658753"
+        iyz="-0.0000001"
+        izz="0.00389565" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/FLW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0.02 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05175" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLW_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.0199977596105174 -0.0830303984957995"
+      rpy="0 0.0397639706643968 0" />
+    <parent
+      link="FL" />
+    <child
+      link="FLW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="FR">
+    <inertial>
+      <origin
+        xyz="0.00000000 -0.00164391 -0.05638398"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00741803"
+        ixy="0.0000001"
+        ixz="-0.0000001"
+        iyy="0.00841612"
+        iyz="-0.00021903"
+        izz="0.00257864" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/FR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="FR_joint"
+    type="continuous">
+    <origin
+      xyz="0.215 -0.13 -0.0422268546742116"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="FR" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="FRW">
+    <inertial>
+      <origin
+        xyz="0.00000000 -0.01916685 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00389557"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00658744"
+        iyz="-0.0000001"
+        izz="0.00389568" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/FRW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.02 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05175" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRW_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.0199977596105174 -0.0830303984957995"
+      rpy="0 0 0" />
+    <parent
+      link="FR" />
+    <child
+      link="FRW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="RL">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.00164391 -0.05638398"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00741800"
+        ixy="0.0000001"
+        ixz="0.0000001"
+        iyy="0.00841609"
+        iyz="0.00021903"
+        izz="0.00257865" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/RL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="RL_joint"
+    type="continuous">
+    <origin
+      xyz="-0.215 0.13 -0.0422268546742116"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RL" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="RLW">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.01916676 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00389570"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00658754"
+        iyz="0.0000001"
+        izz="0.00389565" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/RLW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0.02 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05175" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLW_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.0199977596105173 -0.0830303984957995"
+      rpy="0 0 0" />
+    <parent
+      link="RL" />
+    <child
+      link="RLW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="RR">
+    <inertial>
+      <origin
+        xyz="0.00000000 -0.00164392 -0.05638397"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00741802"
+        ixy="-0.0000001"
+        ixz="-0.0000001"
+        iyy="0.00841610"
+        iyz="-0.00021903"
+        izz="0.00257864" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/RR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="RR_joint"
+    type="continuous">
+    <origin
+      xyz="-0.215 -0.13 -0.0422268546742116"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RR" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="RRW">
+    <inertial>
+      <origin
+        xyz="0.00000000 -0.01916685 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00389557"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00658743"
+        iyz="0.0000001"
+        izz="0.00389568" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/RRW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.02 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05175" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRW_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.0199977596105176 -0.0830303984957995"
+      rpy="0 0 0" />
+    <parent
+      link="RR" />
+    <child
+      link="RRW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="amr_body">
+    <inertial>
+      <origin
+        xyz="-0.00098903 0.00000000 0.50602255"
+        rpy="0 0 0" />
+      <mass
+        value="50.00000000" />
+      <inertia
+        ixx="4.12941088"
+        ixy="0.00000110"
+        ixz="-0.05238311"
+        iyy="4.08467914"
+        iyz="0.00000351"
+        izz="0.15016177" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/amr_body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/amr_body_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="amr_body_joint"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="-0.165 0 0.152238040924072"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="amr_body" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="L_hand">
+    <inertial>
+      <origin
+        xyz="0.17266363 0.02478042 -0.00024762"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00194788"
+        ixy="-0.00003477"
+        ixz="0.00048922"
+        iyy="0.08950464"
+        iyz="0.00000041"
+        izz="0.08949912" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/L_hand.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/L_hand_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_hand_joint"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="0.082 0.13 0.776328761974"
+      rpy="0 0 0" />
+    <parent
+      link="amr_body" />
+    <child
+      link="L_hand" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="R_hand">
+    <inertial>
+      <origin
+        xyz="0.17266436 -0.02478041 -0.00024776"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00194785"
+        ixy="0.00003477"
+        ixz="0.00048925"
+        iyy="0.08950443"
+        iyz="-0.00000040"
+        izz="0.08949896" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/R_hand.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/R_hand_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_hand_joint"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="0.082 -0.13 0.776328761974"
+      rpy="0 0 0" />
+    <parent
+      link="amr_body" />
+    <child
+      link="R_hand" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="cart">
+    <inertial>
+      <origin
+        xyz="0.40580142 -0.00106548 -0.45416920"
+        rpy="0 0 0" />
+      <mass
+        value="200.00000000" />
+      <inertia
+        ixx="45.04362355"
+        ixy="0.01103923"
+        ixz="5.83978594"
+        iyy="58.12365068"
+        iyz="-0.00917173"
+        izz="24.88292105" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.882352941176471 0.882352941176471 0.882352941176471 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cart_joint"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="0.424984280379139 0.13 0.00941762703390203"
+      rpy="0 0 0" />
+    <parent
+      link="R_hand" />
+    <child
+      link="cart" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="cart_FLW">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.00128353 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00502449"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00805942"
+        iyz="-0.0000001"
+        izz="0.00502426" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart_FLW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05715" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cart_FLW_joint"
+    type="continuous">
+    <origin
+      xyz="0.79257212557997 0.195262499999999 -1.057846606422"
+      rpy="0 0 0" />
+    <parent
+      link="cart" />
+    <child
+      link="cart_FLW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="cart_FRW">
+    <inertial>
+      <origin
+        xyz="0.00000000 -0.00128353 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00502449"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00805942"
+        iyz="-0.0000001"
+        izz="0.00502426" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart_FRW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05715" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cart_FRW_joint"
+    type="continuous">
+    <origin
+      xyz="0.79257212557997 -0.195262499999999 -1.057846606422"
+      rpy="0 0 0" />
+    <parent
+      link="cart" />
+    <child
+      link="cart_FRW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="cart_RL">
+    <inertial>
+      <origin
+        xyz="0.01477561 0.00128305 -0.01989437"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00531970"
+        ixy="-0.0000001"
+        ixz="0.00123629"
+        iyy="0.00445415"
+        iyz="-0.0000001"
+        izz="0.00569618" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart_RL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="cart_RL_joint"
+    type="continuous">
+    <origin
+      xyz="0.122647125580001 0.1952625 -0.994346606445404"
+      rpy="0 0 0" />
+    <parent
+      link="cart" />
+    <child
+      link="cart_RL" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="cart_RLW">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.00128353 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00502449"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00805942"
+        iyz="-0.0000001"
+        izz="0.00502426" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart_RLW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05715" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cart_RLW_joint"
+    type="continuous">
+    <origin
+      xyz="0.0476249999999996 0 -0.063500000000242"
+      rpy="0 0 0" />
+    <parent
+      link="cart_RL" />
+    <child
+      link="cart_RLW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="cart_RR">
+    <inertial>
+      <origin
+        xyz="0.01477478 -0.00128320 -0.01989338"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00531982"
+        ixy="0.0000001"
+        ixz="0.00123643"
+        iyy="0.00445414"
+        iyz="-0.0000001"
+        izz="0.00569632" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart_RR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="cart_RR_joint"
+    type="continuous">
+    <origin
+      xyz="0.12264712558 -0.1952625 -0.994346606445404"
+      rpy="0 0 0" />
+    <parent
+      link="cart" />
+    <child
+      link="cart_RR" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="cart_RRW">
+    <inertial>
+      <origin
+        xyz="0.00000000 -0.00128353 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="5.00000000" />
+      <inertia
+        ixx="0.00502449"
+        ixy="-0.0000001"
+        ixz="0.0000001"
+        iyy="0.00805942"
+        iyz="-0.0000001"
+        izz="0.00502426" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://amr/meshes/cart_RRW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>  <!-- 沿 X 軸旋轉 90 度，讓 cylinder 從預設 Z 軸轉為 Y 軸 -->
+      <geometry>
+        <cylinder radius="0.05715" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cart_RRW_joint"
+    type="continuous">
+    <origin
+      xyz="0.0476249999999996 0 -0.063500000000242"
+      rpy="0 0 0" />
+    <parent
+      link="cart_RR" />
+    <child
+      link="cart_RRW" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>

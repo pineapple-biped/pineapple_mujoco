@@ -1,0 +1,204 @@
+<mujoco model="compal_amr_cart">
+  <compiler angle="radian" meshdir="meshes"/>
+
+  <default>
+      <default class="compal_amr_cart">
+          <geom friction="0.4" margin="0.001" condim="1"/>
+          <joint damping="0.1" armature="0.01" frictionloss="0.2"/>
+          <motor ctrlrange="-23.7 23.7"/>
+          <default class="visual">
+              <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+          </default>
+          <default class="rotate">
+              <joint axis="0 0 1"/>
+              <motor ctrlrange="-23.7 23.7"/>
+          </default>
+          <default class="collision">
+              <geom group="3" type="mesh" rgba="1 0 0 0.3" />
+              <default class="wheel">
+              <geom size="0.022" priority="1" condim="6"
+                  friction="0.5 0.02 0.01"/>
+              </default>
+          </default>
+      </default>
+  </default>
+
+  <asset>
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="base_link_collision" file="base_link_collision.STL"/>
+    <mesh name="FL" file="FL.STL"/>
+    <mesh name="FLW" file="FLW.STL"/>
+    <mesh name="FR" file="FR.STL"/>
+    <mesh name="FRW" file="FRW.STL"/>
+    <mesh name="RL" file="RL.STL"/>
+    <mesh name="RLW" file="RLW.STL"/>
+    <mesh name="RR" file="RR.STL"/>
+    <mesh name="RRW" file="RRW.STL"/>
+    <mesh name="amr_body" file="amr_body.STL"/>
+    <mesh name="amr_body_collision" file="amr_body_collision.STL"/>
+    <mesh name="L_hand" file="L_hand.STL"/>
+    <mesh name="L_hand_collision" file="L_hand_collision.STL"/>
+    <mesh name="R_hand" file="R_hand.STL"/>
+    <mesh name="R_hand_collision" file="R_hand_collision.STL"/>
+    <mesh name="cart" file="cart.STL"/>
+    <mesh name="cart_collision" file="cart_collision.STL"/>
+    <mesh name="cart_FLW" file="cart_FLW.STL"/>
+    <mesh name="cart_FRW" file="cart_FRW.STL"/>
+    <mesh name="cart_RL" file="cart_RL.STL"/>
+    <mesh name="cart_RLW" file="cart_RLW.STL"/>
+    <mesh name="cart_RR" file="cart_RR.STL"/>
+    <mesh name="cart_RRW" file="cart_RRW.STL"/>
+  </asset>
+
+  <worldbody>
+  <body name="base_link" pos="0 0 0.3" childclass="compal_amr_cart">
+        <inertial pos="0.00551370 0.00325048 0.00318185" quat="1 0 0 0" mass="100.0" diaginertia="2.46078975 1.60320066 3.12176719" />
+        <freejoint />
+        <site name="imu" pos="0 0 0" />
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link_collision" class="collision"/>
+        <geom pos="-0.165 0 0.152238" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="amr_body"/>
+        <geom pos="-0.165 0 0.152238" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="amr_body_collision" class="collision"/>
+        <geom pos="-0.083 0.13 0.928567" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="L_hand"/>
+        <geom pos="-0.083 0.13 0.928567" quat="1 0 0 0" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="L_hand_collision" class="collision"/>
+        <geom pos="-0.083 -0.13 0.928567" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="R_hand"/>
+        <geom pos="-0.083 -0.13 0.928567" quat="1 0 0 0" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="R_hand_collision" class="collision"/>
+        <body name="cart" pos="0 0 0">
+          <inertial pos="0.40580142 -0.00106548 -0.45416920" quat="1 0 0 0" mass="200.0" diaginertia="58.12365068 45.04362355 24.88292105"/>
+          <geom pos="0.341984 0 0.937984" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.882353 0.882353 0.882353 1" mesh="cart"/>
+          <geom pos="0.341984 0 0.937984" quat="1 0 0 0" type="mesh" rgba="0.882353 0.882353 0.882353 1" mesh="cart_collision" class="collision"/>
+        </body>
+        <body name="FL" pos="0.215 0.13 -0.0422269">
+          <inertial pos="0 0.00164392 -0.056384" quat="0.706949 0.0132321 -0.0132485 0.707016" mass="5" diaginertia="0.00842429 0.00741798 0.00257045"/>
+          <joint name="FL_joint" pos="0 0 0" axis="0 0 1"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="FL"/>
+          <body name="FLW" pos="0 0.0199978 -0.0830304" quat="0.999802 0 0.0198807 0">
+            <inertial pos="0 0.0191668 0" quat="0.668627 -0.230124 -0.23009 0.66861" mass="5" diaginertia="0.00658753 0.00389578 0.00389557"/>
+            <joint name="FLW_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="FLW"/>
+            <geom size="0.05175 0.02" pos="0 0.02 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1"/>
+          </body>
+        </body>
+        <body name="FR" pos="0.215 -0.13 -0.0422269">
+          <inertial pos="0 -0.00164391 -0.056384" quat="0.707019 -0.0132339 0.0132465 0.706946" mass="5" diaginertia="0.00842433 0.00741803 0.00257043"/>
+          <joint name="FR_joint" pos="0 0 0" axis="0 0 1"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="FR"/>
+          <body name="FRW" pos="0 -0.0199978 -0.0830304">
+            <inertial pos="0 -0.0191668 0" quat="0.350378 0.614179 0.614215 0.350369" mass="5" diaginertia="0.00658744 0.00389574 0.00389551"/>
+            <joint name="FRW_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="FRW"/>
+            <geom size="0.05175 0.02" pos="0 -0.02 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1"/>
+          </body>
+        </body>
+        <body name="RL" pos="-0.215 0.13 -0.0422269">
+          <inertial pos="0 0.00164391 -0.056384" quat="0.707019 0.013234 -0.0132466 0.706946" mass="5" diaginertia="0.0084243 0.007418 0.00257044"/>
+          <joint name="RL_joint" pos="0 0 0" axis="0 0 1"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="RL"/>
+          <body name="RLW" pos="0 0.0199978 -0.0830304">
+            <inertial pos="0 0.0191668 0" quat="0.66861 -0.23009 -0.230124 0.668627" mass="5" diaginertia="0.00658754 0.00389578 0.00389557"/>
+            <joint name="RLW_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="RLW"/>
+            <geom size="0.05175 0.02" pos="0 0.02 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1"/>
+          </body>
+        </body>
+        <body name="RR" pos="-0.215 -0.13 -0.0422269">
+          <inertial pos="0 -0.00164392 -0.056384" quat="0.706949 -0.0132321 0.0132484 0.707016" mass="5" diaginertia="0.00842431 0.00741802 0.00257043"/>
+          <joint name="RR_joint" pos="0 0 0" axis="0 0 1"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="RR"/>
+          <body name="RRW" pos="0 -0.0199978 -0.0830304">
+            <inertial pos="0 -0.0191668 0" quat="0.350351 0.614195 0.614205 0.350387" mass="5" diaginertia="0.00658743 0.00389574 0.00389551"/>
+            <joint name="RRW_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="RRW"/>
+            <geom size="0.05175 0.02" pos="0 -0.02 0" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1"/>
+          </body>
+        </body>
+        <body name="cart_FLW" pos="1.13456 0.195262 -0.119862">
+          <inertial pos="0 0.00128353 0" quat="0.695804 -0.125859 -0.12584 0.695831" mass="5" diaginertia="0.00805942 0.00502453 0.00502422"/>
+          <joint name="cart_FLW_joint" pos="0 0 0" axis="0 1 0"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="cart_FLW"/>
+          <geom size="0.05715 0.025" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1" class="wheel"/>
+        </body>
+        <body name="cart_FRW" pos="1.13456 -0.195262 -0.119862">
+          <inertial pos="0 -0.00128353 0" quat="0.695804 -0.125859 -0.12584 0.695831" mass="5" diaginertia="0.00805942 0.00502453 0.00502422"/>
+          <joint name="cart_FRW_joint" pos="0 0 0" axis="0 1 0"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="cart_FRW"/>
+          <geom size="0.05715 0.025" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1" class="wheel"/>
+        </body>
+        <body name="cart_RL" pos="0.464631 0.195263 -0.0563622">
+          <inertial pos="0.0147756 0.00128305 -0.0198944" quat="-3.74208e-05 0.908768 -1.64869e-05 0.417302" mass="5" diaginertia="0.00675848 0.00445415 0.0042574"/>
+          <joint name="cart_RL_joint" pos="0 0 0" axis="0 0 1"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="cart_RL"/>
+          <body name="cart_RLW" pos="0.047625 0 -0.0635">
+            <inertial pos="0 0.00128353 0" quat="0.695804 -0.125859 -0.12584 0.695831" mass="5" diaginertia="0.00805942 0.00502453 0.00502422"/>
+            <joint name="cart_RLW_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="cart_RLW"/>
+            <geom size="0.05715 0.025" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1" class="wheel"/>
+          </body>
+        </body>
+        <body name="cart_RR" pos="0.464631 -0.195263 -0.0563622">
+          <inertial pos="0.0147748 -0.0012832 -0.0198934" quat="0.00032471 0.908769 -0.000151652 0.4173" mass="5" diaginertia="0.00675875 0.00445414 0.00425739"/>
+          <joint name="cart_RR_joint" pos="0 0 0" axis="0 0 1"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="cart_RR"/>
+          <body name="cart_RRW" pos="0.047625 0 -0.0635">
+            <inertial pos="0 -0.00128353 0" quat="0.695804 -0.125859 -0.12584 0.695831" mass="5" diaginertia="0.00805942 0.00502453 0.00502422"/>
+            <joint name="cart_RRW_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="cart_RRW"/>
+            <geom size="0.05715 0.025" quat="0.707105 0.707108 0 0" type="cylinder" rgba="0.792157 0.819608 0.933333 1" class="wheel"/>
+          </body>
+        </body>
+      </body>
+  </worldbody>
+
+  <actuator>
+    <motor class="rotate" name="FL_motor" joint="FL_joint" />
+    <motor class="rotate" name="FR_motor" joint="FR_joint" />
+    <motor class="rotate" name="RL_motor" joint="RL_joint" />
+    <motor class="rotate" name="RR_motor" joint="RR_joint" />
+
+    <motor ctrlrange="-15 15" name="FL_wheel" joint="FLW_joint" />
+    <motor ctrlrange="-15 15" name="FR_wheel" joint="FRW_joint" />
+    <motor ctrlrange="-15 15" name="RL_wheel" joint="RLW_joint" />
+    <motor ctrlrange="-15 15" name="RR_wheel" joint="RRW_joint" />
+  </actuator>
+
+  <sensor>
+    <jointpos name="FL_Z_pos" joint="FL_joint" />
+    <jointpos name="FR_Z_pos" joint="FR_joint" />
+    <jointpos name="RL_Z_pos" joint="RL_joint" />
+    <jointpos name="RR_Z_pos" joint="RR_joint" />
+
+    <jointpos name="FLY_pos" joint="FLW_joint" />
+    <jointpos name="FR_Y_pos" joint="FRW_joint" />
+    <jointpos name="RL_Y_pos" joint="RLW_joint" />
+    <jointpos name="RR_Y_pos" joint="RRW_joint" />
+
+    <jointvel name="FL_Z_vel" joint="FL_joint" />
+    <jointvel name="FR_Z_vel" joint="FR_joint" />
+    <jointvel name="RL_Z_vel" joint="RL_joint" />
+    <jointvel name="RR_Z_vel" joint="RR_joint" />
+
+    <jointvel name="FLY_vel" joint="FLW_joint" />
+    <jointvel name="FR_Y_vel" joint="FRW_joint" />
+    <jointvel name="RL_Y_vel" joint="RLW_joint" />
+    <jointvel name="RR_Y_vel" joint="RRW_joint" />
+
+    <jointactuatorfrc name="FL_Z_torque" joint="FL_joint" />
+    <jointactuatorfrc name="FR_Z_torque" joint="FR_joint" />
+    <jointactuatorfrc name="RL_Z_torque" joint="RL_joint" />
+    <jointactuatorfrc name="RR_Z_torque" joint="RR_joint" />
+
+    <jointactuatorfrc name="FLY_torque" joint="FLW_joint" noise="0.01"/>
+    <jointactuatorfrc name="FR_Y_torque" joint="FRW_joint" noise="0.01"/>
+    <jointactuatorfrc name="RL_Y_torque" joint="RLW_joint" noise="0.01"/>
+    <jointactuatorfrc name="RR_Y_torque" joint="RRW_joint" noise="0.01"/>
+
+    <framequat name="imu_quat" objtype="site" objname="imu" noise="0.0"/>
+    <gyro name="imu_gyro" site="imu" noise="0.0"/>
+    <accelerometer name="imu_acc" site="imu" />
+
+    <framepos name="frame_pos" objtype="site" objname="imu" />
+    <framelinvel name="frame_lin_vel" objtype="site" objname="imu" />
+    <frameangvel name="frame_ang_vel" objtype="site" objname="imu" />
+  </sensor>
+
+</mujoco>
