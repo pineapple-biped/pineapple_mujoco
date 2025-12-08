@@ -1,36 +1,6 @@
 # Introduction
-## Unitree mujoco
-`unitree_mujoco` is a simulator developed based on `Unitree sdk2` and `mujoco`. Users can easily integrate the control programs developed with `Unitree_sdk2`, `unitree_ros2`, and `unitree_sdk2_python` into this simulator, enabling a seamless transition from simulation to physical development. The repository includes two versions of the simulator implemented in C++ and Python, with a structure as follows:
-![](./doc/func.png)
-
-## Directory Structure
-- `simulate`: Simulator implemented based on unitree_sdk2 and mujoco (C++)
-- `simulate_python`: Simulator implemented based on unitree_sdk2_python and mujoco (Python)
-- `unitree_robots`: MJCF description files for robots supported by unitree_sdk2
-- `terrain_tool`: Tool for generating terrain in simulation scenarios
-- `example`: Example programs
-
-## Supported Unitree sdk2 Messages:
-**Current version only supports low-level development, mainly used for sim to real verification of controller**
-- `LowCmd`: Motor control commands
-- `LowState`: Motor state information
-- `SportModeState`: Robot position and velocity data
-
-Note:
-1. The numbering of the motors corresponds to the actual robot hardware. Specific details can be found in the [Unitree documentation](https://support.unitree.com/home/zh/developer).
-2. In the actual robot hardware, the `SportModeState` message is not readable after the built-in motion control service is turned off. However, the simulator retains this message to allow users to utilize the position and velocity information for analyzing the developed control programs.
-
-## Related links
-- [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2)
-- [unitree_sdk2_python](https://github.com/unitreerobotics/unitree_sdk2_python)
-- [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
-- [Unitree Doc](https://support.unitree.com/home/zh/developer)
-- [Mujoco Doc](https://mujoco.readthedocs.io/en/stable/overview.html)
-
-## Message (DDS idl) type description
-- Unitree Go2, B2, H1, B2w, Go2w robots use unitree_go idl for low-level communication.
-- Unitree G1 robot uses unitree_hg idl for low-level communication.
-
+## Pineapple mujoco
+Contains pineapple v0 and v1 model
 
 # Installation
 ## C++ Simulator (simulate)
@@ -135,10 +105,9 @@ The program will output the robot's pose and position information in the simulat
 The configuration file for the C++ simulator is located at `/simulate/config.yaml`:
 ```yaml
 # Robot name loaded by the simulator
-# "go2", "b2", "b2w", "h1"
-robot: "go2"
+# "pineapple_v0", "pineapple_v1"
+robot: "pineapple_v0"
 # Robot simulation scene file
-# For example, for go2, it refers to the scene.xml file in the /unitree_robots/go2/ folder
 robot_scene: "scene.xml"
 # DDS domain id, it is recommended to distinguish from the real robot (default is 0 on the real robot)
 domain_id: 1
@@ -160,10 +129,10 @@ enable_elastic_band: 0 # For H1
 The configuration file for the Python simulator is located at `/simulate_python/config.py`:
 ```python
 # Robot name loaded by the simulator
-# "go2", "b2", "b2w", "h1"
-ROBOT = "go2"
+# "pineapple_v0", "pineapple_v1"
+ROBOT = "pineapple_v0"
 # Robot simulation scene file
-ROBOT_SCENE = "../unitree_robots/" + ROBOT + "/scene.xml"  # Robot scene
+ROBOT_SCENE = "../pineapple_robots/" + ROBOT + "/scene.xml"  # Robot scene
 # DDS domain id, it is recommended to distinguish from the real robot (default is 0 on the real robot)
 DOMAIN_ID = 1  # Domain id
 # Network interface name, for simulation, it is recommended to use the local loopback "lo"
@@ -237,81 +206,7 @@ if js_type == "xbox":
     }
 ```
 
-### Elastic band for humanoid 
-Consider humanoid robots are not suitable for starting in ground, a virtual elastic band was designed to simulate the lifting and lowering of humanoid robots. Setting ` enable_elastic_mand/ENABLE_ELSTIC_BAND=1 ` can enable the virtual elastic band. After loading the robot, press' 9 'to activate or release the strap, press' 7' to lower the robot, and press' 8 'to lift the robot.
-
 ## 2. Terrain Generation Tool
 We provide a tool to parametrically create simple terrains in the mujoco simulator, including stairs, rough ground, and height maps. The program is located in the `terrain_tool` folder. For specific usage instructions, refer to the README file in the `terrain_tool` folder.
 ![Terrain Generation Example](./doc/terrain.png)
 
-## 3. Sim to Real
-The `example` folder contains simple examples of using different interfaces to make the Go2 robot stand up and then lie down. These examples demonstrate how to implement the transition from simulation to reality using interfaces provided by Unitree. Here is an explanation of each folder name:
-- `cpp`: Based on C++, using `unitree_sdk2` interface
-- `python`: Based on Python, using  `unitree_sdk2_python` interface
-- `ros2`: Based on ROS2, using `unitree_ros2` interface
-
-### unitree_sdk2
-1. Compile
-```bash
-cd example/cpp
-mkdir build && cd build
-cmake ..
-make -j4
-```
-2. Run:
-```bash
-./stand_go2 # Control the robot in the simulation (make sure the Go2 simulation scene has been loaded)
-./stand_go2 enp3s0 # Control the physical robot, where enp3s0 is the name of the network card connected to the robot
-```
-3. Sim to Real
-```cpp
-if (argc < 2)
-{   
-    // If no network card is input, use the simulated domain id and the local network card
-    ChannelFactory::Instance()->Init(1, "lo");
-}
-else
-{   
-    // Otherwise, use the specified network card
-    ChannelFactory::Instance()->Init(0, argv[1]);
-}
-```
-### unitree_sdk2_python
-1. Run
-```bash
-python3 ./stand_go2.py # Control the robot in the simulation (make sure the Go2 simulation scene has been loaded)
-python3 ./stand_go2.py enp3s0 # Control the physical robot, where enp3s0 is the name of the network card connected to the robot
-```
-2. Sim to Real
-```python
-if len(sys.argv) < 2:
-    // If no network card is input, use the simulated domain id and the local network card
-    ChannelFactoryInitialize(1, "lo")
-else:
-    // Otherwise, use the specified network card
-    ChannelFactoryInitialize(0, sys.argv[1])
-```
-### unitree_ros2
-
-1. Compile
-First, ensure that the unitree_ros2 environment has been properly configured, see [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2).
-
-```bash
-source ~/unitree_ros2/setup.sh
-cd example/ros2
-colcon build
-```
-
-2. Run simulation
-```bash
-source ~/unitree_ros2/setup_local.sh # Use the local network card
-export ROS_DOMAIN_ID=1 # Modify the domain id to match the simulation
-./install/stand_go2/bin/stand_go2 # Run
-```
-
-3. Run real robot
-```bash
-source ~/unitree_ros2/setup.sh # Use the network card connected to the robot
-export ROS_DOMAIN_ID=0 # Use the default domain id
-./install/stand_go2/bin/stand_go2 # Run
-```

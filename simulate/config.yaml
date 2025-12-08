@@ -1,4 +1,4 @@
-robot: "bigreddog"  # Robot name, "bigreddog", "bipedwheel"
+robot: "pineapple_v0"  # Robot name, "pineapple_v0", "pineapple_v1"
 robot_scene: "scene.xml" # Robot scene, /unitree_robots/[robot]/scene.xml 
 
 domain_id: 1  # Domain id
