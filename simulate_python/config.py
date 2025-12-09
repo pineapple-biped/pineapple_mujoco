@@ -1,4 +1,4 @@
-ROBOT = "pineapple_v0" # Robot name, "pineapple_v0", "pineapple_v1"
+ROBOT = "pineapple_v1" # Robot name, "pineapple_v0", "pineapple_v1"
 ROBOT_SCENE = "../pineapple_robots/" + ROBOT + "/scene.xml" # Robot scene
 DOMAIN_ID = 1 # Domain id
 INTERFACE = "lo" # Interface 
