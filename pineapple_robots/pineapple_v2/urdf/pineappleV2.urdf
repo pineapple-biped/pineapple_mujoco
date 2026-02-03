@@ -255,15 +255,6 @@
           rgba="0.4 0.4 0.4 1" />
       </material>
     </visual>
-    <!-- <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://pineappleV2/meshes/L_hip.STL" />
-      </geometry>
-    </collision> -->
   </link>
   <joint
     name="L_hip_joint"
@@ -281,7 +272,7 @@
       lower="-0.698"
       upper="0.698"
       effort="20.0"
-      velocity="12.566" />
+      velocity="20.94" />
   </joint>
   <link
     name="L_thigh">
@@ -354,7 +345,7 @@
       lower="-0.349"
       upper="1.919"
       effort="20.0"
-      velocity="12.566" />
+      velocity="20.94" />
   </joint>
   <link
     name="knee_motor_L">
@@ -468,10 +459,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="-1.745"
-      upper="1.745"
+      lower="-3.314"
+      upper="0.174"
       effort="40.0"
-      velocity="10.472" />
+      velocity="16.76" />
   </joint>
   <link
     name="wheel_motor_L">
@@ -526,12 +517,12 @@
       <mass
         value="0.405" />
       <inertia
-        ixx="0.00008002"
+        ixx="0.000480"
         ixy="0"
         ixz="0"
-        iyy="0.00015810"
+        iyy="0.001"
         iyz="0"
-        izz="0.00008002" />
+        izz="0.000480" />
     </inertial>
     <visual>
       <origin
@@ -548,13 +539,10 @@
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="../meshes/L_wheel.STL" />
-      </geometry>
+        <origin xyz="0 0.003 0" rpy="-1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.077" length="0.023"/>
+        </geometry>
     </collision>
   </link>
   <joint
@@ -571,7 +559,7 @@
       xyz="0 1 0" />
     <limit
       effort="11.0"
-      velocity="15.708" />
+      velocity="25.13" />
   </joint>
   <link
     name="R_hip">
@@ -603,15 +591,6 @@
           rgba="0.4 0.4 0.4 1" />
       </material>
     </visual>
-    <!-- <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://pineappleV2/meshes/R_hip.STL" />
-      </geometry>
-    </collision> -->
   </link>
   <joint
     name="R_hip_joint"
@@ -629,7 +608,7 @@
       lower="-0.698"
       upper="0.698"
       effort="20.0"
-      velocity="12.566" />
+      velocity="20.94" />
   </joint>
   <link
     name="R_thigh">
@@ -702,7 +681,7 @@
       lower="-0.349"
       upper="1.919"
       effort="20.0"
-      velocity="12.566" />
+      velocity="20.94" />
   </joint>
   <link
     name="knee_motor_R">
@@ -816,10 +795,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="-1.745"
-      upper="1.745"
+      lower="-3.314"
+      upper="0.174"
       effort="40.0"
-      velocity="10.472" />
+      velocity="16.76" />
   </joint>
   <link
     name="wheel_motor_R">
@@ -874,12 +853,12 @@
       <mass
         value="0.405" />
       <inertia
-        ixx="0.00008002"
+        ixx="0.000480"
         ixy="0"
         ixz="0"
-        iyy="0.00015810"
+        iyy="0.001"
         iyz="0"
-        izz="0.00008002" />
+        izz="0.000480" />
     </inertial>
     <visual>
       <origin
@@ -896,13 +875,10 @@
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="../meshes/R_wheel.STL" />
-      </geometry>
+        <origin xyz="0 -0.003 0" rpy="-1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.077" length="0.023"/>
+        </geometry>
     </collision>
   </link>
   <joint
@@ -919,7 +895,7 @@
       xyz="0 1 0" />
     <limit
       effort="11.0"
-      velocity="15.708" />
+      velocity="25.13" />
   </joint>
   <link
     name="camera">
