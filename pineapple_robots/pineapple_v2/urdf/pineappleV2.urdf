@@ -14,17 +14,17 @@
     name="base_link">
     <inertial>
       <origin
-        xyz="-0.0018705 1.4002E-08 0.043903"
+        xyz="0.044769 0.00021 0.063886"
         rpy="0 0 0" />
       <mass
         value="1.673" />
       <inertia
-        ixx="0.00924389"
-        ixy="0"
-        ixz="-0.00155379"
-        iyy="0.01472633"
-        iyz="0"
-        izz="0.02192228" />
+        ixx="0.008145"
+        ixy="-0.0000276"
+        ixz="-0.00009621"
+        iyy="0.02025"
+        iyz="0.000004224"
+        izz="0.0226" />
     </inertial>
     <visual>
       <origin
@@ -512,17 +512,17 @@
     name="L_wheel">
     <inertial>
       <origin
-        xyz="-1.5282E-07 0.012142 -1.1774E-07"
+        xyz="0 0.008 0"
         rpy="0 0 0" />
       <mass
         value="0.405" />
       <inertia
-        ixx="0.00051"
+        ixx="0.00073779"
         ixy="0"
         ixz="0"
-        iyy="0.001"
+        iyy="0.00143168"
         iyz="0"
-        izz="0.00051" />
+        izz="0.00073779" />
     </inertial>
     <visual>
       <origin
@@ -848,17 +848,17 @@
     name="R_wheel">
     <inertial>
       <origin
-        xyz="-6.462E-08 -0.012142 -7.2937E-08"
+        xyz="0 -0.008 0"
         rpy="0 0 0" />
       <mass
         value="0.405" />
       <inertia
-        ixx="0.00051"
+        ixx="0.00073779"
         ixy="0"
         ixz="0"
-        iyy="0.001"
+        iyy="0.00143168"
         iyz="0"
-        izz="0.00051" />
+        izz="0.00073779" />
     </inertial>
     <visual>
       <origin
@@ -901,17 +901,17 @@
     name="camera">
     <inertial>
       <origin
-        xyz="0 0 0"
+        xyz="0.174 -0.001 0.036"
         rpy="0 0 0" />
       <mass
         value="0.3" />
       <inertia
-        ixx="0.00018695"
-        ixy="-0.00000169"
-        ixz="0.00000039"
-        iyy="0.00002755"
-        iyz="0.00000043"
-        izz="0.00018826" />
+        ixx="0.00018698"
+        ixy="-0.0000006251"
+        ixz="0.0000003048"
+        iyy="0.00002759"
+        iyz="0.0000005818"
+        izz="0.00018838" />
     </inertial>
     <visual>
       <origin
