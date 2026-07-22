@@ -83,10 +83,13 @@
     <mesh file="upper_arm_0.obj"/>
     <mesh file="upper_arm_1.obj"/>
     <mesh file="upper_arm_2.obj"/>
+    <mesh name="gripper_case_link" file="gripper_case_link.STL"/>
+    <mesh name="gripper_left_link" file="gripper_left_link.STL"/>
+    <mesh name="gripper_right_link" file="gripper_right_link.STL"/>
   </asset>
 
   <worldbody>
-    <body name="base_link" pos="0 0 0.5" childclass="pinapplev2">
+    <body name="base_link" pos="0 0 0.5" childclass="pinapplev2arm">
       <inertial pos="0.044769 0.00021 0.063886" mass="1.673" fullinertia="0.008145 0.02025 0.0226 -0.0000276 -0.00009621 0.000004224" />
       <!-- <inertial pos="-0.0018705 0.0 0.043903" quat="1 0 0 0" mass="1.673" diaginertia="0.00924389 0.01472633 0.02192228" />  -->    
       <freejoint /> 
@@ -127,6 +130,24 @@
                 <geom mesh="6dof_1" material="Opaque(245,245,246)" class="visual"/>
                 <joint name="5dof_joint" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708"/>
                 <geom size="0.03 0.0325 0.036" pos="-0.002 0 -0.037" type="box" class='collision'/>
+                <body name="gripper_case_link" pos="0.029 0 -0.04075">
+                  <inertial pos="0.0330564 5.996e-05 0.00932181" quat="0.688833 0.704189 -0.125804 0.117472" mass="0.4" diaginertia="0.000558638 0.000509874 0.000345138"/>
+                  <joint name="gripper_case_joint" pos="0 0 0" axis="1 0 0" range="-1.5708 1.5708"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="gripper_case_link"/>
+                  <geom size="0.025 0.0355 0.035" pos="0.03 0 0.005" type="box" class='collision'/>
+                  <body name="gripper_left_link" pos="0.0744 0.060275 -0.000100007">
+                    <inertial pos="0.0362489 0.00264813 -0.00147696" quat="-0.105549 0.680557 -0.0836824 0.720207" mass="0.1" diaginertia="0.000140089 0.000133219 3.07923e-05"/>
+                    <joint name="gripper_left_joint" pos="0 0 0" axis="0 1 0" type="slide" range="0 0.04" actuatorfrcrange="-1 1"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="gripper_left_link"/>
+                    <geom size="0.0745 0.02 0.0188" pos="0.065 0.006 0" type="box" class='collision'/>
+                  </body>
+                  <body name="gripper_right_link" pos="0.0744 -0.060275 -0.000100007">
+                    <inertial pos="0.036249 -0.00264818 0.00164906" quat="-0.0848077 0.720005 -0.10674 0.680446" mass="0.1" diaginertia="0.00014009 0.000133217 3.08033e-05"/>
+                    <joint name="gripper_right_joint" pos="0 0 0" axis="0 -1 0" type="slide" range="-0.04 0" actuatorfrcrange="-1 1"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="gripper_right_link"/>
+                    <geom size="0.0745 0.02 0.0188" pos="0.065 -0.006 0" type="box" class='collision'/>
+                  </body>
+                </body>
               </body>
             </body>
           </body>
@@ -220,6 +241,7 @@
     <motor class="arm_4340" name="arm_3_dof" joint="upper_arm_joint" />
     <motor class="arm_4310" name="arm_4_dof" joint="fore_arm_joint" />
     <motor class="arm_4310" name="arm_5_dof" joint="5dof_joint" />
+    <motor class="arm_4310" name="arm_6_dof" joint="gripper_case_joint" />
 
   </actuator>
 
@@ -239,6 +261,7 @@
     <jointpos name="arm_3_dof_pos" joint="upper_arm_joint" noise="0.05" />
     <jointpos name="arm_4_dof_pos" joint="fore_arm_joint" noise="0.05" />
     <jointpos name="arm_5_dof_pos" joint="5dof_joint" noise="0.05" />
+    <jointpos name="arm_6_dof_pos" joint="gripper_case_joint" noise="0.01" />
 
     <jointvel name="L_hip_vel" joint="L_hip_joint" noise="0.5" />
     <jointvel name="L_thigh_vel" joint="L_thigh_joint" noise="0.5" />
@@ -254,6 +277,7 @@
     <jointvel name="arm_3_dof_vel" joint="upper_arm_joint" noise="0.05" />
     <jointvel name="arm_4_dof_vel" joint="fore_arm_joint" noise="0.05" />
     <jointvel name="arm_5_dof_vel" joint="5dof_joint" noise="0.05" />
+    <jointvel name="arm_6_dof_vel" joint="gripper_case_joint" noise="0.05" />
 
     <jointactuatorfrc name="L_hip_torque" joint="L_hip_joint" noise="0.01" />
     <jointactuatorfrc name="L_thigh_torque" joint="L_thigh_joint" noise="0.01" />
@@ -269,6 +293,7 @@
     <jointactuatorfrc name="arm_3_dof_torque" joint="upper_arm_joint" noise="0.01" />
     <jointactuatorfrc name="arm_4_dof_torque" joint="fore_arm_joint" noise="0.01" />
     <jointactuatorfrc name="arm_5_dof_torque" joint="5dof_joint" noise="0.01" />
+    <jointactuatorfrc name="arm_6_dof_torque" joint="gripper_case_joint" noise="0.01" />
 
 
     <framequat name="imu_quat" objtype="site" objname="imu" noise="0.05"/>
@@ -279,8 +304,4 @@
     <framelinvel name="frame_lin_vel" objtype="site" objname="imu"/>
     <frameangvel name="frame_ang_vel" objtype="site" objname="imu"/>
   </sensor>
-  <keyframe>
-    <key name="home" qpos="0 0 0.32 1 0 0 0 0 0.879 -1.469 0 0 0.879 -1.469 0"/>
-    <!-- <key name="home" qpos="0 0.879 -1.469 0 0 0.879 -1.469 0"/> -->
-  </keyframe>
 </mujoco>
