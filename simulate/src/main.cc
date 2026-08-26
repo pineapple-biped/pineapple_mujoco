@@ -656,7 +656,7 @@ int main(int argc, char **argv)
   sim->use_elastic_band_ = config.enable_elastic_band;
   yaml_node.~Node();
 
-  string scene_path = "../../unitree_robots/" + config.robot + "/" + config.robot_scene;
+  string scene_path = "../../pineapple_robots/" + config.robot + "/" + config.robot_scene;
   const char *filename = nullptr;
   if (argc > 1)
   {

@@ -1,5 +1,5 @@
-<mujoco model="Pineapple scene">
-  <include file="pineapple_v3.xml"/>
+<mujoco model="Pineapple arm scene">
+  <include file="pineapple_v3_arm.xml"/>
 
   <statistic center="0 0 0.1" extent="0.8"/>
 

@@ -13,15 +13,15 @@
              each hip joint sets its own. ctrlrange matches the effort_limit in
              pineapple_v3_constants.py. -->
         <default class="hip">
-            <joint axis="1 0 0" damping="0.020" armature="0.0040" frictionloss="0.10"/>
-            <motor ctrlrange="-20.0 20.0"/>
+            <joint axis="1 0 0" damping="0.34" armature="0.0278" frictionloss="0.10"/>
+            <motor ctrlrange="-28.0 28.0"/>
         </default>
         <default class="thigh">
-            <joint axis="0 1 0" range="0 1.7453" damping="0.020" armature="0.0040" frictionloss="0.10"/>
-            <motor ctrlrange="-20.0 20.0"/>
+            <joint axis="0 1 0" range="0 1.7453" damping="0.29122" armature="0.02810" frictionloss="0.10"/>
+            <motor ctrlrange="-28.0 28.0"/>
         </default>
         <default class="calf">
-            <joint axis="0 1 0" range="-3.229 0" damping="0.091" armature="0.0161" frictionloss="0.20"/>
+            <joint axis="0 1 0" range="-3.229 0" damping="1.07257" armature="0.15915" frictionloss="0.20"/>
             <motor ctrlrange="-40.0 40.0"/>
         </default>
         <default class="visual">
@@ -31,9 +31,9 @@
             <geom group="3" type="mesh" rgba="1 0 0 0.3" contype="0" conaffinity="1"/>
             <default class="wheel">
               <geom size="0.0925" priority="1" condim="3" friction="0.8 0.02 0.01"/>
-              <!-- Drivetrain (armature/damping/frictionloss) is set per wheel joint below,
-                   currently mjlab's committed values (V2 sysid fit, symmetric). The V3
-                   per-side fit is in pineapple_v3.xml.sysid-backup next to this file. -->
+              <!-- Drivetrain (armature/damping/frictionloss) is set per wheel
+                   joint below from the V3 wheel sysid fit; L and R are
+                   asymmetric. See scripts/sysid/logs/v3/wheel_sysid_results.md. -->
               <joint axis="0 1 0"/>
               <motor ctrlrange="-11.0 11.0"/>
             </default>
@@ -140,7 +140,7 @@
               <inertial pos="0 0.0101505 0" quat="0.707107 0 0 0.707107" mass="0.49" diaginertia="0.00199485 0.00104471 0.00104471"/>
               <geom mesh="wheel_l_0" material="Opaque(38,83,134)" class="visual"/>
               <geom mesh="wheel_l_1" material="Opaque(63,63,63)" class="visual"/>
-              <joint name="wheel_l_joint" class="wheel" pos="0 0 0" axis="0 1 0" armature="0.00176" damping="0.0088" frictionloss="0.0841"/>
+              <joint name="wheel_l_joint" class="wheel" pos="0 0 0" axis="0 1 0" armature="0.00203" damping="0.00383" frictionloss="0.34739"/>
               <site name="wheel_l" pos="0 0 0"/>
               <geom name="wheel_l_collision" size="0.0925 0.003" pos="0 0.0097 0" quat="0.707388 0.706825 0 0" type="cylinder" class='wheel'/>
             </body>
@@ -167,7 +167,7 @@
               <inertial pos="0 -0.0101505 0" quat="0.707107 0 0 0.707107" mass="0.49" diaginertia="0.00199485 0.00104471 0.00104471"/>
               <geom mesh="wheel_r_0" material="Opaque(38,83,134)" class="visual"/>
               <geom mesh="wheel_r_1" material="Opaque(63,63,63)" class="visual"/>
-              <joint name="wheel_r_joint" class="wheel" pos="0 0 0" axis="0 1 0" armature="0.00176" damping="0.0088" frictionloss="0.0841"/>
+              <joint name="wheel_r_joint" class="wheel" pos="0 0 0" axis="0 1 0" armature="0.00174" damping="0.00581" frictionloss="0.24566"/>
               <site name="wheel_r" pos="0 0 0"/>
               <geom name="wheel_r_collision" size="0.0925 0.003" pos="0 -0.0097 0" quat="0.707388 0.706825 0 0" type="cylinder" class='wheel'/>
             </body>
