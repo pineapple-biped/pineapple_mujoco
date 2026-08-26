@@ -60,6 +60,71 @@ The program will output the robot's pose and position information in the simulat
 **Note:** The testing program sends the unitree_go message. If you want to test G1 robot, you need to modify the program to use the unitree_hg message.
 
 ## Python Simulator (simulate_python)
+### 0. Conda environment (recommended)
+Section 1 below is upstream's system-wide `pip3` install. This fork is developed against a
+conda env named `pineapple_mujoco`, shared with `pineapple_rl_deploy` so that one env runs both
+the simulator and the controller that drives it over DDS.
+
+```bash
+conda create -n pineapple_mujoco python=3.10 -y
+conda activate pineapple_mujoco
+
+# From the pineapple_mujoco directory. Brings cyclonedds==0.10.2, numpy and opencv-python
+# with it -- see that repo's setup.py. Clone it first if you have not:
+#   git clone https://github.com/unitreerobotics/unitree_sdk2_python.git ../unitree_sdk2_python
+pip install -e ../unitree_sdk2_python
+
+# mujoco pulls in glfw, pyopengl and etils.
+pip install mujoco pygame pyyaml
+
+# Only for running pineapple_rl_deploy in this same env; the simulator itself never imports it.
+pip install onnxruntime
+```
+
+Two details are load-bearing:
+
+- **Python 3.10.** `unitree_sdk2py` pins `cyclonedds==0.10.2`, and that version ships a binary
+  wheel with `libddsc` bundled inside it. That wheel is what makes the `CYCLONEDDS_HOME` source
+  build described further down unnecessary -- and it is a `cp310` wheel, so the interpreter
+  version is not free choice. If you see "Could not locate cyclonedds", you are on a Python the
+  wheel does not cover and have fallen back to building it from source.
+- **`-e` on the SDK.** The DDS IDL message types are imported by dotted path
+  (`unitree_sdk2py.idl.geometry_msgs.msg.dds_.TwistStamped_` and friends) from configs in both
+  repos, so an editable install keeps the checkout the single copy rather than a stale one.
+
+Known-good versions, as installed: python 3.10.20, mujoco 3.12.0, numpy 2.2.6, cyclonedds
+0.10.2, onnxruntime 1.23.2, pygame 2.6.1, PyYAML 6.0.3, opencv-python 5.0.0.
+
+`terrain_tool/terrain_generator.py` additionally needs `pip install noise` (opencv arrives with
+the SDK). Nothing else imports it, so skip it unless you are generating terrain.
+
+#### Check the env is actually self-contained
+
+Conda envs here share Python 3.10 with the system interpreter, so anything sitting in
+`~/.local/lib/python3.10/site-packages` is importable from inside the env and hides the fact
+that it was never installed into it. The env then works on this machine and fails on the robot.
+To check:
+
+```bash
+PYTHONNOUSERSITE=1 python -c "import mujoco, numpy, pygame, yaml, cyclonedds, unitree_sdk2py"
+```
+
+If that fails while the same import without the variable succeeds, the package it names is
+coming from the user site. `pip install` it again with the env activated.
+
+#### Run it
+
+```bash
+conda activate pineapple_mujoco
+cd simulate_python
+python unitree_mujoco.py
+```
+
+`config.py` picks the robot (`ROBOT = "pineapple_v3"`), the DDS domain (`DOMAIN_ID = 1`) and the
+network interface (`INTERFACE = "lo"`). All three have to match whatever controller you point at
+it -- a domain or interface mismatch is silent, and looks like a simulator that simply never
+receives a command.
+
 ### 1. Dependencies
 #### unitree_sdk2_python
 ```bash
